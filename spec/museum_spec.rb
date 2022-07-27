@@ -85,7 +85,7 @@ RSpec.describe Museum do
     expect(dmns.patrons).to eq([patron_1, patron_2, patron_3])
   end
 
-  xit 'can count patrons in each exhibit' do
+  it 'can count patrons in each exhibit' do
     dmns = Museum.new("Denver Museum of Nature and Science")
     gems_and_minerals = Exhibit.new({name: "Gems and Minerals", cost: 0})
     dead_sea_scrolls = Exhibit.new({name: "Dead Sea Scrolls", cost: 10})
@@ -111,7 +111,8 @@ RSpec.describe Museum do
 
     expect(dmns.patrons_by_exhibit_interest).to be_a(Hash)
     expect(dmns.patrons_by_exhibit_interest.count).to eq(3)
-    expect(dmns.patrons_by_exhibit_interest[:dead_sea_scrolls]).to be([patron_1, patron_2, patron_3])
-    expect(dmns.patrons_by_exhibit_interest[:gems_and_minerals]).to be([patron_1])
+    expect(dmns.patrons_by_exhibit_interest[dead_sea_scrolls]).to be([patron_1, patron_2, patron_3])
+    expect(dmns.patrons_by_exhibit_interest[gems_and_minerals]).to be([patron_1])
+    expect(dmns.patrons_by_exhibit_interest[imax]).to be([])
   end
 end 
