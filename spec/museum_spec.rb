@@ -10,7 +10,7 @@ RSpec.describe Museum do
     expect(dmns.name).to eq("Denver Museum of Nature and Science") 
   end
 
-  xit 'can add exhibits to the museum exhibit list'
+  it 'can add exhibits to the museum exhibit list' do
     dmns = Museum.new("Denver Museum of Nature and Science")
     gems_and_minerals = Exhibit.new({name: "Gems and Minerals", cost: 0})
     dead_sea_scrolls = Exhibit.new({name: "Dead Sea Scrolls", cost: 10})
@@ -27,7 +27,7 @@ RSpec.describe Museum do
     expect(dmns.exhibits).to eq([gems_and_minerals, dead_sea_scrolls, imax])
   end
 
-  xit 'can recommend exhibits based on patron interests'
+  it 'can recommend exhibits based on patron interests' do
     dmns = Museum.new("Denver Museum of Nature and Science")
     gems_and_minerals = Exhibit.new({name: "Gems and Minerals", cost: 0})
     dead_sea_scrolls = Exhibit.new({name: "Dead Sea Scrolls", cost: 10})
@@ -49,9 +49,10 @@ RSpec.describe Museum do
 
     expect(dmns.recommend_exhibits(patron_1)).to be_a(Array)
     expect(dmns.recommend_exhibits(patron_1).count).to eq(2)
-    expect(dmns.recommend_exhibits(patron_1)).to eq(["Dead Sea Scrolls", "Gems and Minerals" ])
+    expect(dmns.recommend_exhibits(patron_1)).to eq([dead_sea_scrolls, gems_and_minerals])
 
     expect(dmns.recommend_exhibits(patron_2)).to be_a(Array)
     expect(dmns.recommend_exhibits(patron_2).count).to eq(1)
-    expect(dmns.recommend_exhibits(patron_2)).to eq(["IMAX"])
-end
+    expect(dmns.recommend_exhibits(patron_2)).to eq([imax])
+  end
+end 
